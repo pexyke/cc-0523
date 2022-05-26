@@ -1,6 +1,6 @@
 const logger = (req, res, next) => {
-    console.log('épp logolok');
+    console.log("logging...");
     next();
-}
-
-module.exports = logger
+  };
+  
+  module.exports = logger;

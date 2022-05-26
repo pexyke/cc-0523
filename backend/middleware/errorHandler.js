@@ -1,7 +1,6 @@
-// express beépített func, 4 paramatérként első az error
-const errorHandler = (error, req, res, next) => {
-    console.log(error)
-    res.status(500).json('Something went wrong')
-  }
+const errorHandler = (err, req, res, next) => {
+  console.log(err.stack);
+  res.status(500).json("Caught by error middleware");
+};
 
-  module.exports = errorHandler
+module.exports = errorHandler;

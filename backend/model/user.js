@@ -1,22 +1,26 @@
 const mongoose = require("mongoose");
 
 const todoSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  isDone: { type: Boolean, required: true, default: false },
+  title: { type: String, required: true }, // empty string NONO!
+  content: { type: String, required: true }, // empty string is enough
+  isDone: { type: Boolean, default: false },
 });
 
 const dashboardSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  todos: [todoSchema],
+  title: { type: String, required: true }, // empty string NONO!
+  todos: [todoSchema], // empty list is default?
 });
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  googleId: { type: String, required: true, unique: true },
-//password: { type: String, required: true, unique: true },
-  dashboards: [dashboardSchema],
+  username: { type: String, unique: true, required: true }, // empty string NONO!
+  email: { type: String, unique: true, required: true }, // empty string NONO! + validation
+  googleId: { type: String, unique: true, required: true },
+  dashboards: [dashboardSchema], // empty list is default?
 });
 
-const User = mongoose.model("User", userSchema);
-module.exports = User
+const User = mongoose.model("user", userSchema);
+module.exports = User;
+
+/*
+todos: { type: todoSchema, default: () => [] }, // empty list is default?
+*/
