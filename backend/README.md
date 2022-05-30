@@ -1,16 +1,18 @@
-# todo api
+# To Do Api
 
-## system requirement
-- nodejs
+## System requirements
+
+- node.js
 - npm
 
-## enviroment variable
+## Environment variables
 
-### create .env file with the following variables
-1. PORT={ 4000 }
-2. APP URL={ http://localhost:3000 }
+Create a .env file in root, with the following variables:
 
+- PORT={4000} (backend)
+- APP_URL={http://localhost:3000/} (frontend)
 
+## Dev start
 
-## dev start
-- npm start
+- npm install
+- npm run dev (nodemon)

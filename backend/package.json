@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server",
     "test": "jest --verbose --coverage",
+    "test:watch": "jest --watch",
     "dev": "nodemon server.js"
   },
   "author": "",
