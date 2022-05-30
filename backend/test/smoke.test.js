@@ -3,18 +3,18 @@ const mockServer = require("supertest");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 
-function sum(a, b) {
-  return a + b;
-}
+// function sum(a, b) {
+//   return a + b;
+// }
 
-test("adds 1 + 2 to equal 3", () => {
-  // given
-  // no setup required
-  // when - 1 line only
-  const result = sum(1, 2);
-  // then
-  expect(result).toBe(3);
-});
+// test("adds 1 + 2 to equal 3", () => {
+//   // given
+//   // no setup required
+//   // when - 1 line only
+//   const result = sum(1, 2);
+//   // then
+//   expect(result).toBe(3);
+// });
 
 test("/random endpoint sends 404", async () => {
   // given
