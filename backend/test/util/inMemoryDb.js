@@ -15,7 +15,7 @@ const stopDb = async (connection, server) => {
 
 // database collections
 const deleteAll = async (...collections) => {
-  const promises = collections.map((collection) => collection.deleteMany());
+  const promises = collections.map((collection) => collection.deleteMany()); // ez instant-azonnal, egy listanyi promise-t ad vissza
   await Promise.all(promises);
 };
 

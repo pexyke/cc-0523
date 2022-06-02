@@ -13,8 +13,10 @@ app.use(cors(corsOptions));
 app.use(express.json()); // body-ban erkezo json-t parse-olni tudja
 app.use([logger]); // use this middleware on every request
 
-const dashboardRouter = require("./route/dashboard");
-app.use("/api/dashboards", dashboardRouter);
+const dashboardRoutes = require("./route/dashboard");
+app.use("/api/dashboards", dashboardRoutes);
+const userRoutes = require("./route/user.js");
+app.use("/api/user", userRoutes);
 /* tutorial */
 const userRouter = require("./route/user");
 app.use("/user", userRouter);
@@ -30,4 +32,5 @@ app.use(errorHandler);
 module.exports = app;
 
 /*
+
 */

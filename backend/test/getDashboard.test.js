@@ -28,8 +28,6 @@ describe("requests to api/dashboards", () => {
     // given
     const johnDoe = new User({
       username: "johnDoe",
-      email: "john@doe.com",
-      googleId: "dgsvfhjqbkj657",
     });
     await johnDoe.save();
 
@@ -49,8 +47,6 @@ describe("requests to api/dashboards", () => {
     // given
     const johnDoe = new User({
       username: "johnDoe",
-      email: "john@doe.com",
-      googleId: "dgsvfhjqbkj657",
     });
     await johnDoe.save();
 
