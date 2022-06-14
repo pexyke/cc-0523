@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useEffect, useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import NumberPresenter from "./components/NumberPresenter";
+import NumberModifier from "./components/NumberModifier";
+import { useCounter } from "./CounterProvider";
 
 function App() {
+  const { value, increment, decrement } = useCounter(); //custom hook bro!
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h4>Counter</h4>
+      <p>Value: {value}</p>
+      <Button onClick={decrement} variant="contained" size="small">
+        -
+      </Button>
+      <Button onClick={increment} variant="contained" size="small">
+        +
+      </Button>
+      <NumberPresenter />
+      <NumberModifier />
     </div>
   );
 }
