@@ -1,10 +1,13 @@
 const router = require("express").Router();
-const { allDashboards } = require("../controller/dashboard");
+const User = require("../model/user");
 const auth = require("../middleware/auth");
 
 /* these are REST endpoints */
 
-router.get("/", auth({ block: true }), allDashboards); // display the user's all dashboards
+router.get("/", auth({ block: true }), async (req, res) => {
+  const user = await User.findById(res.locals.user.userId);
+  res.json({ user }); // = {user: user}
+}); // display the user's all dashboards
 
 // router.get("/:id", auth({ block: true }), dashboardById); // display one dashboard
 
