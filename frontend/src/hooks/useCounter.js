@@ -1,7 +1,9 @@
 import { React, useEffect, useState } from "react";
 
 export const useCounter = (componentName) => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(
+    Number(localStorage.getItem(`counter${componentName}`))
+  );
 
   const increment = () => {
     setCounter(counter + 1);

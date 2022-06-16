@@ -1,9 +1,18 @@
-import { React, useState, useContext, createContext } from "react";
+import { React, useState, useEffect, useContext, createContext } from "react";
 import http from "axios";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, [])
+  
 
   const auth = () => {
     const googleBaseUrl = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -27,13 +36,16 @@ const AuthProvider = ({ children }) => {
       });
       console.log("data", response.data);
       setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
     } catch (err) {
       console.log(err);
       setToken(null);
+      localStorage.removeItem("token");
     }
   };
 
   const logout = () => {
+    localStorage.removeItem("token");
     setToken(null);
   };
 

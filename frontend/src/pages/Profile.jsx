@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../providers/auth";
+
 
 const Profile = () => {
   const { token } = useAuth();
-  console.log(token);
 
   return (
     <div>
@@ -13,3 +13,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
