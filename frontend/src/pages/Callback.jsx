@@ -12,8 +12,8 @@ const Callback = () => {
       const code = params.get("code");
       if (code) {
         await login(code, "google");
-        navigate("/profile");
       }
+      navigate("/profile");
     };
     loginWithCode();
     // eslint-disable-next-line

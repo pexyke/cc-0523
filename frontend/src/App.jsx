@@ -1,6 +1,7 @@
-import { React } from "react";
+import  React  from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Register from "./pages/Register";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
@@ -18,7 +19,15 @@ function App() {
           path="/profile"
           element={
             <Protected>
-              <Profile />
+              <Profile /> {/* guarded route */}
+            </Protected>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <Protected>
+              <Register />
             </Protected>
           }
         />
@@ -31,11 +40,5 @@ function App() {
 export default App;
 
 /*
-The Riddle:
-hint: context
-1db useCounter hook!!!
-home-ba
-profile-ba
-sajat, de megorzi a sajatjat re-render eseten
-es nem local/session storage
+
 */

@@ -1,18 +1,13 @@
-import { React, useState, useEffect, useContext, createContext } from "react";
+import { React, useState, useContext, createContext, useEffect } from "react";
 import http from "axios";
+import jwt from "jwt-decode";
+import { todoApi } from "../api/todoApi";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setToken(token);
-    }
-  }, [])
-  
+  const [user, setUser] = useState(null);
+  const { post } = todoApi();
 
   const auth = () => {
     const googleBaseUrl = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -25,7 +20,7 @@ const AuthProvider = ({ children }) => {
     searchParams.append("prompt", "select_account");
 
     const completeUrl = googleBaseUrl + "?" + searchParams.toString();
-    window.open(completeUrl);
+    window.location.href = completeUrl;
   };
 
   const login = async (code, provider) => {
@@ -34,9 +29,9 @@ const AuthProvider = ({ children }) => {
         code,
         provider,
       });
-      console.log("data", response.data);
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
+      setUser(jwt(response.data.token));
     } catch (err) {
       console.log(err);
       setToken(null);
@@ -45,11 +40,30 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
     setToken(null);
+    localStorage.removeItem("token");
   };
 
-  return <AuthContext.Provider value={{ token, auth, logout, login }}>{children}</AuthContext.Provider>; // provide value for my context
+  const register = async (username) => {
+    const response = await post("user/create", { username });
+    if (response?.status === 200) {
+      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      setUser(jwt(response.data.token));
+    }
+  };
+
+  useEffect(() => {
+    const tokenInStorage = localStorage.getItem("token");
+    if (tokenInStorage) {
+      setToken(tokenInStorage);
+      setUser(jwt(tokenInStorage));
+    }
+
+    // eslint-disable-next-line
+  }, []);
+
+  return <AuthContext.Provider value={{ token, user, auth, logout, login, register }}>{children}</AuthContext.Provider>; // provide value for my context
 };
 
 // custom hook bro

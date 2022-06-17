@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { React, useState, useContext, createContext, useEffect } from "react";
 import { useAuth } from "../providers/auth";
-
 
 const Profile = () => {
   const { token } = useAuth();
@@ -13,4 +12,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
